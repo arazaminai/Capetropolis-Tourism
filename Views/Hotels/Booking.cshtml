@@ -41,12 +41,110 @@
                     {
                         <option value="@meal">@meal</option>
                     }
-            
-            <button type="submit" class="btn btn-primary">Book</button>
-        </form>
-</div>
 
-<script>
-    let hotelData = @Html.Raw(Json.Serialize(Model));
-    console.log(hotelData);
-</script>
+                    <button type="submit" class="btn btn-primary">Book</button>
+        </form>
+
+        <form asp-controller="Hotels" asp-action="BookingSubmission">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="FirstName"
+                        placeholder="Enter your first name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dob">Date of Birth</label>
+                    <input type="text" class="form-control" id="dob" name="DateOfBirth"
+                        placeholder="Enter your date of birth">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="surname">Surname</label>
+                    <input type="text" class="form-control" id="surname" name="Surname"
+                        placeholder="Enter your surname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="Address"
+                        placeholder="Enter your address">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="initials">Initials</label>
+                    <input type="text" class="form-control" id="initials" name="Initials"
+                        placeholder="Enter your initials">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" id="telephone" name="Telephone"
+                        placeholder="Enter your phone number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="Email"
+                        placeholder="Enter your email address">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="meals">Meals req.</label>
+                    <select id="meals" class="form-control" name="Meals">
+                        <option selected disabled>Select meal preference</option>
+                        @foreach (var meal in Model.meals)
+                        {
+                            <option value="@meal">@meal</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="idType">Id type</label>
+                    <select id="idType" class="form-control" name="IdType">
+                        <option selected disabled>Select ID type</option>
+                        <option value="Passport">Passport</option>
+                        <option value="Driver's License">Driver's License</option>
+                        <option value="National ID">National ID</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="roomType">Room Type</label>
+                    <select id="roomType" class="form-control" name="RoomType">
+                        <option selected disabled>Select room type</option>
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                        <option value="Suite">Suite</option>
+                        <option value="Family">Family</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="idNumber">Id number</label>
+                    <input type="text" class="form-control" id="idNumber" name="IdNumber"
+                        placeholder="Enter your ID number">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="Price" placeholder="Enter the price">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="features">Features</label>
+                    <textarea class="form-control" id="features" name="Features" rows="3"
+                        placeholder="Enter additional features or requirements"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm Booking</button>
+        </form>
+    </div>
+
+    @* text FirstName
+    text DateOfBirth
+    text Surname
+    text Address
+    text Initials
+    text Telephone
+    email Email
+    select Meals
+    select IdType
+    select RoomType
+    text IdNumber
+    text Price
+    textarea Features *@
+    <script>
+        let hotelData = @Html.Raw(Json.Serialize(Model));
+        console.log(hotelData);
+    </script>
