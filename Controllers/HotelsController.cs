@@ -20,12 +20,6 @@ namespace CapetropolisTourism.Controllers
             {
                 string json = r.ReadToEnd();
                 this.hotels = JsonConvert.DeserializeObject<List<HotelModel>>(json);
-                // Print the JSON to the console
-                // Console.WriteLine(json);
-                foreach (var hotel in this.hotels)
-                {
-                    // Console.WriteLine(hotel.name);
-                }
             }
         }
 
@@ -35,16 +29,26 @@ namespace CapetropolisTourism.Controllers
             return View(this.hotels);
         }
 
-        public ActionResult Details(string name)
+        public IActionResult Booking(string name)
         {
-            foreach (var hotel in this.hotels)
+            HotelModel hotel = hotels.FirstOrDefault(h => h.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+            if (hotel != null)
             {
-                if (hotel.name == name)
-                {
-                    return View(hotel);
-                }
+                return View(hotel);
             }
             return NotFound();
+        }
+
+        public JsonResult Details(string name)
+        {
+            HotelModel hotel = hotels.FirstOrDefault(h => h.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+            if (hotel != null)
+            {
+                return Json(hotel);
+            }
+            return Json(null);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

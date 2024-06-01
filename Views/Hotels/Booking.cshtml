@@ -24,3 +24,8 @@
             </div>
         }
 </div>
+
+<script>
+    let hotelData = @Html.Raw(Json.Serialize(Model));
+    console.log(hotelData);
+</script>
