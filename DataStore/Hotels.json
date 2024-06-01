@@ -1,0 +1,122 @@
+[
+    {
+        "name": "CapeHoney",
+        "rooms": [
+            {
+                "roomType": "Standard",
+                "price": 3000,
+                "features": ["Breakfast excluded", "single bed", "TV", "internet"]
+            },
+            {
+                "roomType": "Deluxe",
+                "price": 5000,
+                "features": ["Breakfast included", "double (2) single beds", "TV", "internet"]
+            },
+            {
+                "roomType": "Exquisite",
+                "price": 7000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator"]
+            },
+            {
+                "roomType": "Executive",
+                "price": 10000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "room service", "tourism tour of Capetropolis"]
+            }
+        ]
+    },
+    {
+        "name": "CapeIvory",
+        "rooms": [
+            {
+                "roomType": "Single",
+                "price": 2500,
+                "features": ["Breakfast excluded", "single bed", "TV", "internet"]
+            },
+            {
+                "roomType": "Double",
+                "price": 5000,
+                "features": ["Breakfast included", "double (2) single beds", "TV", "internet"]
+            },
+            {
+                "roomType": "Executive",
+                "price": 8000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "buffet voucher"]
+            }
+        ]
+    },
+    {
+        "name": "CapeSweet",
+        "rooms": [
+            {
+                "roomType": "Tasty",
+                "price": 3500,
+                "features": ["Breakfast included", "two single beds", "TV", "internet"]
+            },
+            {
+                "roomType": "Comfort",
+                "price": 5000,
+                "features": ["Breakfast included", "two single beds", "TV", "internet", "laundry", "free parking"]
+            },
+            {
+                "roomType": "Executive",
+                "price": 9000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "free parking", "pet allowed", "separate dining area"]
+            }
+        ]
+    },
+    {
+        "name": "CapeHive",
+        "rooms": [
+            {
+                "roomType": "Standard",
+                "price": 5000,
+                "features": ["Breakfast included", "single bed", "TV", "internet", "laundry", "free parking"]
+            },
+            {
+                "roomType": "Double",
+                "price": 7000,
+                "features": ["Breakfast included", "double (2) single beds", "TV", "internet"]
+            },
+            {
+                "roomType": "Executive",
+                "price": 10000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "room service", "tourism tour of Capetropolis"]
+            }
+        ]
+    },
+    {
+        "name": "CapeCow",
+        "rooms": [
+            {
+                "roomType": "Budget",
+                "price": 2500,
+                "features": ["Breakfast excluded", "single bed", "TV", "internet"]
+            },
+            {
+                "roomType": "Spotlight",
+                "price": 4000,
+                "features": ["Breakfast included", "two single beds", "TV", "internet"]
+            },
+            {
+                "roomType": "Deluxe",
+                "price": 6000,
+                "features": ["Breakfast included", "single bed", "TV", "internet", "laundry", "free parking", "tourism tour of Capetropolis"]
+            },
+            {
+                "roomType": "Gold",
+                "price": 8000,
+                "features": ["Breakfast included", "single bed", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "free parking", "tourism tour of Capetropolis"]
+            },
+            {
+                "roomType": "Diamond",
+                "price": 12000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "room service", "tourism tour of Capetropolis"]
+            },
+            {
+                "roomType": "Platinum",
+                "price": 15000,
+                "features": ["Breakfast included", "queen-sized double beds", "TV", "internet", "complimentary drinks in refrigerator", "laundry", "room service", "tourism tour of Capetropolis"]
+            }
+        ]
+    }
+]
