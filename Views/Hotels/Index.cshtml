@@ -1,4 +1,4 @@
-﻿@model CapetropolisTourism.Models.HotelModel[];
+﻿@model List<CapetropolisTourism.Models.HotelModel>
 @{
     ViewData["Title"] = "Hotels";
 }
@@ -6,4 +6,26 @@
 <div class="text-center">
     <!-- display name value from controller -->
     <h1 class="display-4">Welcome</h1>
-</div>
+    <!-- foreach loop to display all hotels -->
+    @foreach (var hotel in Model)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">@hotel.name</h5>
+                        @foreach (var room in hotel.rooms)
+                        {
+                            <p class="card-text">@room.roomType</p>
+                            <p class="card-text">@room.price</p>
+                            @foreach (var feature in room.features)
+                            {
+                                <p class="card-text">@feature</p>
+                            }
+                        } 
+                        <a asp-controller="Hotels" asp-action="Details" asp-route-name="@hotel.name" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

@@ -6,4 +6,21 @@
 <div class="text-center">
     <!-- display name value from controller -->
     <h1 class="display-4">@Model.name</h1>
+    <!-- foreach loop to display all hotels -->
+    <div class="row">
+        @foreach (var room in Model.rooms)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">@room.roomType</h5>
+                        <p class="card-text">@room.price</p>
+                        @foreach (var feature in room.features)
+                        {
+                            <p class="card-text">@feature</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
 </div>

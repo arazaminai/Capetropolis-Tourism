@@ -24,7 +24,7 @@ namespace CapetropolisTourism.Controllers
                 // Console.WriteLine(json);
                 foreach (var hotel in this.hotels)
                 {
-                    Console.WriteLine(hotel.name);
+                    // Console.WriteLine(hotel.name);
                 }
             }
         }
@@ -32,23 +32,18 @@ namespace CapetropolisTourism.Controllers
         public IActionResult Index()
         {
             // Pass the list of hotels to the view
-            return View(hotels);
+            return View(this.hotels);
         }
 
-        public IActionResult Details(string name = "Hotels")
+        public ActionResult Details(string name)
         {
-            var hotel = this.hotels.FirstOrDefault(h => h.name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            // print the hotel name to the console
-            Console.WriteLine(hotel.name);
-
-            if (hotel != null)
+            foreach (var hotel in this.hotels)
             {
-                string json = JsonConvert.SerializeObject(hotel);
-                // Print the JSON to the console
-                Console.WriteLine(json);
-                return View(hotel);
+                if (hotel.name == name)
+                {
+                    return View(hotel);
+                }
             }
-            
             return NotFound();
         }
 
