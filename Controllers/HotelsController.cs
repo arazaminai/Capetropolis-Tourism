@@ -40,28 +40,10 @@ namespace CapetropolisTourism.Controllers
             return NotFound();
         }
 
-        public IActionResult BookingSubmission(string name, string roomType)
+        public IActionResult BookingSubmission(string name, string roomType, string mealType)
         {
             Console.WriteLine("BookingSubmission: " + name + " " + roomType);
-            return RedirectToAction("Booking", new { name = name });
-            // HotelModel hotel = hotels.FirstOrDefault(h => h.name.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-            // if (hotel != null)
-            // {
-            //     RoomModel selectedRoom = hotel.rooms.FirstOrDefault(r => r.name.Equals(roomType, StringComparison.OrdinalIgnoreCase));
-
-            //     if (selectedRoom != null)
-            //     {
-            //         return View(new BookingModel
-            //         {
-            //             hotel = hotel,
-            //             room = selectedRoom,
-            //             meal = meal,
-            //             date = date
-            //         });
-            //     }
-            // }
-            // return NotFound();
+            return View();
         }
 
         public JsonResult Details(string name)
