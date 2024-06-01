@@ -10,6 +10,7 @@ namespace CapetropolisTourism.Controllers
     {
         private readonly ILogger<HotelsController> _logger;
         private List<HotelModel> hotels;
+        private List<BookingModel> bookings;
 
         public HotelsController(ILogger<HotelsController> logger)
         {
@@ -40,10 +41,30 @@ namespace CapetropolisTourism.Controllers
             return NotFound();
         }
 
-        public IActionResult BookingSubmission(string name, string roomType, string mealType)
+        public IActionResult BookingSubmission(BookingModel booking)
         {
-            Console.WriteLine("BookingSubmission: " + name + " " + roomType);
-            return View();
+            var bookingData = JsonConvert.SerializeObject(booking);
+            Console.WriteLine(bookingData);
+            this.SaveBooking(booking);
+            return View(booking);
+        }
+
+        private List<BookingModel> GetBookings()
+        {
+            // Initialize the bookings list
+            using (StreamReader r = new StreamReader("DataStore/Bookings.json"))
+            {
+                string json = r.ReadToEnd();
+                this.bookings = JsonConvert.DeserializeObject<List<BookingModel>>(json) ?? new List<BookingModel>();
+                return this.bookings;
+            }
+        }
+
+        private void SaveBooking(BookingModel booking)
+        {
+            this.GetBookings().Add(booking);
+            string json = JsonConvert.SerializeObject(this.bookings);
+            System.IO.File.WriteAllText("DataStore/Bookings.json", json);
         }
 
         public JsonResult Details(string name)
@@ -55,20 +76,6 @@ namespace CapetropolisTourism.Controllers
                 return Json(hotel);
             }
             return Json(null);
-        }
-
-        public IActionResult Search(string query)
-        {
-            List<HotelModel> results = hotels.Where(h => h.name.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
-
-            return View(results);
-        }
-
-        public IActionResult Filter(string meal)
-        {
-            List<HotelModel> results = hotels.Where(h => h.meals.Contains(meal, StringComparer.OrdinalIgnoreCase)).ToList();
-
-            return View(results);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
