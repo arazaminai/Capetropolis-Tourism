@@ -1,0 +1,18 @@
+.booking-form {
+	max-width: 90%;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+}
+.booking-form h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.form-group img {
+	max-width: 100px;
+	margin-top: -10px;
+}
+.form-group label {
+	font-weight: bold;
+}

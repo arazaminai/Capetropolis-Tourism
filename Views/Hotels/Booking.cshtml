@@ -3,89 +3,51 @@
     ViewData["Title"] = "Hotels";
 }
 
-<div class="text-center">
-    <!-- display name value from controller -->
+<div class="text-center container booking-form">
     <h1 class="display-4">@Model.name</h1>
-    <!-- foreach loop to display all hotels -->
     <div class="row">
-        @foreach (var room in Model.rooms)
-        {
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">@room.roomType</h5>
-                        <p class="card-text">@room.price</p>
-                        @foreach (var feature in room.features)
-                        {
-                            <p class="card-text">@feature</p>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
-        <form asp-controller="Hotels" asp-action="BookingSubmission">
-            <input type="hidden" class="form-control" id="hotelName" name="name" value="@Model.name">
-            <div class="form-group">
-                <label for="roomType">Room Type</label>
-                <select class="form-control" id="roomType" name="roomType">
-                    @foreach (var room in Model.rooms)
-                    {
-                        <option value="@room.roomType">@room.roomType</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="mealType">Meal Type</label>
-                <select class="form-control" id="mealType" name="mealType">
-                    @foreach (var meal in Model.meals)
-                    {
-                        <option value="@meal">@meal</option>
-                    }
-
-                    <button type="submit" class="btn btn-primary">Book</button>
-        </form>
-
         <form asp-controller="Hotels" asp-action="BookingSubmission">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First name</label>
                     <input type="text" class="form-control" id="firstName" name="FirstName"
-                        placeholder="Enter your first name">
+                        placeholder="Enter your first name" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="dob">Date of Birth</label>
                     <input type="text" class="form-control" id="dob" name="DateOfBirth"
-                        placeholder="Enter your date of birth">
+                        placeholder="Enter your date of birth" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="surname">Surname</label>
-                    <input type="text" class="form-control" id="surname" name="Surname"
-                        placeholder="Enter your surname">
+                    <input type="text" class="form-control" id="surname" name="Surname" placeholder="Enter your surname"
+                        required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" name="Address"
-                        placeholder="Enter your address">
+                    <input type="text" class="form-control" id="address" name="Address" placeholder="Enter your address"
+                        required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="initials">Initials</label>
                     <input type="text" class="form-control" id="initials" name="Initials"
-                        placeholder="Enter your initials">
+                        placeholder="Enter your initials" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="telephone">Telephone</label>
-                    <input type="text" class="form-control" id="telephone" name="Telephone"
-                        placeholder="Enter your phone number">
+                    <input type="number" class="form-control" id="telephone" name="Telephone"
+                        placeholder="Enter your phone number" required pattern="^[0-9]{10,}$"
+                        title="Phone number should be at least 10 digits">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" id="email" name="Email"
-                        placeholder="Enter your email address">
+                        placeholder="Enter your email address" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="meals">Meals req.</label>
-                    <select id="meals" class="form-control" name="Meals">
-                        <option selected disabled>Select meal preference</option>
+                    <select id="meals" class="form-control" name="Meals" required>
+                        <option value="" selected disabled>Select meal preference</option>
                         @foreach (var meal in Model.meals)
                         {
                             <option value="@meal">@meal</option>
@@ -94,37 +56,36 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="idType">Id type</label>
-                    <select id="idType" class="form-control" name="IdType">
-                        <option selected disabled>Select ID type</option>
+                    <select id="idType" class="form-control" name="IdType" required>
+                        <option value="" selected disabled>Select ID type</option>
                         <option value="Passport">Passport</option>
                         <option value="Driver's License">Driver's License</option>
                         <option value="National ID">National ID</option>
-                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="roomType">Room Type</label>
-                    <select id="roomType" class="form-control" name="RoomType">
-                        <option selected disabled>Select room type</option>
-                        <option value="Single">Single</option>
-                        <option value="Double">Double</option>
-                        <option value="Suite">Suite</option>
-                        <option value="Family">Family</option>
+                    <select id="roomType" class="form-control" name="RoomType" required>
+                        <option value="" selected disabled>Select room type</option>
+                        @foreach (var room in Model.rooms)
+                        {
+                            <option value="@room.roomType">@room.roomType</option>
+                        }
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="idNumber">Id number</label>
                     <input type="text" class="form-control" id="idNumber" name="IdNumber"
-                        placeholder="Enter your ID number">
+                        placeholder="Enter your ID number" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" name="Price" placeholder="Enter the price">
-                </div>
+                </div required>
                 <div class="form-group col-md-12">
                     <label for="features">Features</label>
                     <textarea class="form-control" id="features" name="Features" rows="3"
-                        placeholder="Enter additional features or requirements"></textarea>
+                        placeholder="Enter additional features or requirements" required></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Confirm Booking</button>
