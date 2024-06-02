@@ -2,7 +2,90 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+><div class="header-section">
+    <h1>Booking your stay in Capetropolis</h1>
+    <p>Secure a safe accommodation and a memorable experience in our lodging facilities</p>
 </div>
+
+<div class="container services-section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="row float-center">
+        <div class="col-md-3">
+            <div class="service-box">
+                <h3>CapeHoney</h3>
+                <p>We offer special complementary services like massage, games, gym, swimming pool, evening buffet, special party nights.</p>
+                <a asp-controller="Hotels" asp-action="Booking" asp-route-name="CapeHoney" class="btn btn-primary">Book</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="service-box">
+                <h3>CapeIvory</h3>
+                <p>We offer exquisite rooms at affordable rates. You will get an unforgettable experience.</p>
+                <a asp-controller="Hotels" asp-action="Booking" asp-route-name="CapeIvory" class="btn btn-primary">Book</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="service-box">
+                <h3>CapeSweet</h3>
+                <p>At CapeSweet you will experience the mixture of sweetness and pleasure. We promise you an unbeatable experience.</p>
+                <a asp-controller="Hotels" asp-action="Booking" asp-route-name="CapeSweet" class="btn btn-primary">Book</a>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="service-box">
+                <h3>CapeCow</h3>
+                <p>Come to us, we have a variety of pleasurable services that are tailored made for the comfort of our guests.</p>
+                <a asp-controller="Hotels" asp-action="Booking" asp-route-name="CapeCow" class="btn btn-primary">Book</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="service-box">
+                <h3>CapeHive</h3>
+                <p>Looking for a place to hide for a few days? CapeHive is perfect. Come and enjoy the serenity and ambiance of nature that our environment offers.</p>
+                <a asp-controller="Hotels" asp-action="Booking" asp-route-name="CapeHive" class="btn btn-primary">Book</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container tourism-section">
+    <h2 class="section-title">Capetropolis Tourism</h2>
+    <p>Welcome to Capetropolis. Our island will offer you comfort and pleasure, the kind that is rare to find elsewhere!</p>
+    <p>The attractions in our island include nature, a game reserve, historical sites and monuments, exquisite hotels and restaurants, shopping malls. Visit us to have a memorable experience.</p>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+    .header-section {
+        text-align: center;
+        padding: 50px 0;
+    }
+    .services-section {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .service-box {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .tourism-section {
+        text-align: center;
+        padding: 50px 0;
+    }
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
