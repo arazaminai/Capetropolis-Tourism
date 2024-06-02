@@ -4,11 +4,11 @@ using CapetropolisTourism.Models;
 
 namespace CapetropolisTourism.Controllers;
 
-public class MealsController : Controller
+public class AdminController : Controller
 {
-    private readonly ILogger<MealsController> _logger;
+    private readonly ILogger<AdminController> _logger;
 
-    public MealsController(ILogger<MealsController> logger)
+    public AdminController(ILogger<AdminController> logger)
     {
         _logger = logger;
     }
@@ -16,16 +16,6 @@ public class MealsController : Controller
     public IActionResult Index()
     {
         return View();
-    }
-
-    public IActionResult Agents()
-    {
-        return View();
-    }
-
-    public IActionResult AgentSubmission(AgentModel agent)
-    {
-        return View(agent);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

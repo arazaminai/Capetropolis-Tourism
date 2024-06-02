@@ -1,5 +1,6 @@
 [
     {
+        "Id": 1,
         "name": "CapeHoney",
         "rooms": [
             {
@@ -30,6 +31,7 @@
         ]
     },
     {
+        "Id": 2,
         "name": "CapeIvory",
         "rooms": [
             {
@@ -58,6 +60,7 @@
         ]
     },
     {
+        "Id": 3,
         "name": "CapeSweet",
         "rooms": [
             {
@@ -84,6 +87,7 @@
         ]
     },
     {
+        "Id": 4,
         "name": "CapeHive",
         "rooms": [
             {
@@ -110,6 +114,7 @@
         ]
     },
     {
+        "Id": 5,
         "name": "CapeCow",
         "rooms": [
             {

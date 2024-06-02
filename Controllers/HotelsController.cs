@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CapetropolisTourism.Models;
+using CapetropolisTourism.DataStore;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -10,18 +11,14 @@ namespace CapetropolisTourism.Controllers
     {
         private readonly ILogger<HotelsController> _logger;
         private List<HotelModel> hotels;
-        private List<BookingModel> bookings;
+        private Data<BookingModel> bookings;
 
         public HotelsController(ILogger<HotelsController> logger)
         {
             _logger = logger;
 
-            // Initialize the hotels list
-            using (StreamReader r = new StreamReader("DataStore/Hotels.json"))
-            {
-                string json = r.ReadToEnd();
-                this.hotels = JsonConvert.DeserializeObject<List<HotelModel>>(json);
-            }
+            this.hotels = new Data<HotelModel>("Hotels").GetData();
+            this.bookings = new Data<BookingModel>("Bookings");
         }
 
         public IActionResult Index()
@@ -45,26 +42,8 @@ namespace CapetropolisTourism.Controllers
         {
             var bookingData = JsonConvert.SerializeObject(booking);
             Console.WriteLine(bookingData);
-            this.SaveBooking(booking);
+            booking = this.bookings.AddData(booking);
             return View(booking);
-        }
-
-        private List<BookingModel> GetBookings()
-        {
-            // Initialize the bookings list
-            using (StreamReader r = new StreamReader("DataStore/Bookings.json"))
-            {
-                string json = r.ReadToEnd();
-                this.bookings = JsonConvert.DeserializeObject<List<BookingModel>>(json) ?? new List<BookingModel>();
-                return this.bookings;
-            }
-        }
-
-        private void SaveBooking(BookingModel booking)
-        {
-            this.GetBookings().Add(booking);
-            string json = JsonConvert.SerializeObject(this.bookings);
-            System.IO.File.WriteAllText("DataStore/Bookings.json", json);
         }
 
         public JsonResult Details(string name)

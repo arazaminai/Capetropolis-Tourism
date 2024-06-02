@@ -1,9 +1,9 @@
 namespace CapetropolisTourism.Models;
 
-public class BookingModel
+public class BookingModel : BaseModel
 {
     // short unique id 8 characters
-    public required string Id { get; set; } = Guid.NewGuid().ToString().Substring(0, 8);    
+    // public override int Id { get; set; };
     public required string FirstName { get; set; }
     public required string DateOfBirth { get; set; }
     public required string Surname { get; set; }
