@@ -44,6 +44,11 @@ public class MealsController : Controller
 
     public IActionResult AgentSubmission(AgentModel agent)
     {
+        if (agent.Id != null)
+        {
+            this.agents.UpdateData(agent);
+            return RedirectToAction("Agents");
+        }
         agent = this.agents.AddData(agent);
         Console.WriteLine(JsonConvert.SerializeObject(agent));
         return RedirectToAction("Agents");
