@@ -1,7 +1,122 @@
-﻿@{
+﻿@model CapetropolisTourism.Models.AdminModel
+@{
     ViewData["Title"] = "Admin";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Admin</h1>
+
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-md-3">
+            <div class="stat-card bg-dark">
+                <i class="fa fa-calendar"></i>
+                <div class="stat">@Model.totalBookings</div>
+                <div class="label">Total bookings</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-success">
+                <i class="fa fa-dollar-sign"></i>
+                <div class="stat">R<span>@Model.totalIncome</span> </div>
+                <div class="label">Total Income</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-primary">
+                <i class="fa fa-users"></i>
+                <div class="stat">@Model.totalGuests</div>
+                <div class="label">Total Guests</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card bg-info">
+                <i class="fa fa-calendar-alt"></i>
+                <div class="stat">@DateTime.Now.ToString("MMMM yyyy")</div>
+                <div class="label">Current Date: 22-04-2024</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Sales Performance
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Hotel</th>
+                        <th>Number of bookings</th>
+                        <th>Total Sales (R)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (SaleModel sale in Model.getHotelSales())
+                    {
+                        <tr>
+                            <td>@sale.hotelName</td>
+                            <td>@sale.totalBookings</td>
+                            <td>@sale.totalIncome</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button class="btn btn-secondary">Export Table</button>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            Customers
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Booking Date</th>
+                        <th>Phone Number</th>
+                        <th>Hotel</th>
+                        <th>Room Type</th>
+                        <th>Number of guests in the room</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CustomerModel customer in Model.getCustomers())
+                    {
+                        <tr>
+                            <td>@customer.Name</td>
+                            <td>@customer.Date</td>
+                            <td>@customer.PhoneNumber</td>
+                            <td>@customer.Hotel</td>
+                            <td>@customer.RoomType</td>
+                            <td>@customer.Guests</td>
+                            <td>@customer.Amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<style>
+    .stat-card {
+        border-radius: 8px;
+        padding: 20px;
+        color: white;
+        margin-bottom: 20px;
+    }
+    .stat-card i {
+        font-size: 24px;
+    }
+    .stat-card .stat {
+        font-size: 32px;
+    }
+    .stat-card .label {
+        font-size: 18px;
+    }
+    .table thead th {
+        border-bottom: 2px solid #dee2e6;
+    }
+</style>
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>

@@ -1,10 +1,106 @@
-﻿@{
-    ViewData["Title"] = "Hotels";
+﻿@model Tuple<List<AgentModel>, List<HotelModel>>
+<!-- seperate the 2 values of tuple into their own variables -->
+@{
+    List<AgentModel> agents = Model.Item1;
+    List<HotelModel> hotels = Model.Item2;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order a Meal</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .placeholder {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <h2>Capemint</h2>
+            </div>
+            <div class="col text-right">
+                <p>Date: @DateTime.Now.ToString("dd-MM-yyyy")</p>
+            </div>
+        </div>
+        <h3>Order a Meal</h3>
+        <form asp-controller="Meals" asp-action="MealSubmission">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Placeholder" name="FirstName" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mealDetails">Meal details</label>
+                    <textarea class="form-control" id="mealDetails" rows="3" placeholder="Describe your meal here" name="MealDetails"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="surname">Surname</label>
+                    <input type="text" class="form-control" id="surname" placeholder="Placeholder" name="Surname" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="hotelResidence">Hotel residence</label>
+                    <select id="hotelResidence" class="form-control" name="HotelName" required>
+                        <option selected disabled>Select</option>
+                        @foreach (var hotel in hotels)
+                        {
+                            <option value="@hotel.name">@hotel.name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="mealType">Meal type</label>
+                    <select id="mealType" class="form-control" name="MealType" required>
+                        <option selected disabled>Select</option>
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="mealAgent">Meal agent</label>
+                    <input type="text" class="form-control" id="mealAgent" placeholder="Placeholder" name="MealAgent" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" formaction='@Url.Action("MealSubmission")' formmethod="post">Order meal</button>
+            <button type="submit" class="btn btn-secondary" formaction='@Url.Action("MealView")' formmethod="post">View order</button>
+        </form>
+        <h4 class="mt-5">Meal providers</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name + Surname</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Meal Services</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically generated -->
+                @foreach (var agent in agents)
+                {
+                    <tr>
+                        <td>@agent.Id</td>
+                        <td>@agent.FirstName @agent.Surname</td>
+                        <td>@agent.Email</td>
+                        <td>@agent.Telephone</td>
+                        <td>@Html.Raw(Json.Serialize(agent.MealServices))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-sddsds
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

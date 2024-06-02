@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using CapetropolisTourism.Models;
+using System.IO;
 
 namespace CapetropolisTourism.DataStore;
 
@@ -11,12 +12,12 @@ public class Data<T> where T : BaseModel
 
     public Data(string table)
     {
-        this.table = table;
+        this.table = this.path + table + ".json";
     }
 
     public List<T> GetData()
     {
-        using (StreamReader r = new StreamReader(this.path + this.table + ".json"))
+        using (StreamReader r = new StreamReader(this.table))
         {
             string json = r.ReadToEnd();
             List<T> data = JsonConvert.DeserializeObject<List<T>>(json);
@@ -27,10 +28,10 @@ public class Data<T> where T : BaseModel
     public T AddData(T data)
     {
         List<T> previousData = GetData();
-        data.Id = previousData.Count + 1;
+        data.Id = previousData.Count > 0 ? previousData.Last().Id + 1 : 1;
         previousData.Add(data);
         string dataJson = JsonConvert.SerializeObject(previousData);
-        File.WriteAllText(table, dataJson);
+        System.IO.File.WriteAllText(this.table, dataJson);
         return data;
     }
 

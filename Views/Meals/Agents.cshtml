@@ -1,0 +1,142 @@
+@model List<CapetropolisTourism.Models.AgentModel>
+@{
+    ViewData["Title"] = "Meal Agents";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Agents - Caterers</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .meal-agents-form {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .meal-agents-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group img {
+            max-width: 100px;
+            margin-top: -10px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container meal-agents-form">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Capemint Meal Agents - Caterers</h2>
+                </div>
+            </div>
+        </div>
+        <form asp-controller="Meals" asp-action="AgentSubmission">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="Enter your first name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="surname">Surname</label>
+                    <input type="text" class="form-control" id="surname" name="Surname" placeholder="Enter your surname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" class="form-control" id="telephone" name="Telephone" placeholder="Enter your phone number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Meal Services</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="regular" name="MealServices" value="Regular">
+                    <label class="form-check-label" for="regular">Regular</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="vegan" name="MealServices" value="Vegan">
+                    <label class="form-check-label" for="vegan">Vegan</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="halal" name="MealServices" value="Halal">
+                    <label class="form-check-label" for="halal">Halal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="kosher" name="MealServices" value="Kosher">
+                    <label class="form-check-label" for="kosher">Kosher</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="keto" name="MealServices" value="Keto">
+                    <label class="form-check-label" for="keto">Keto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="indian" name="MealServices" value="Indian">
+                    <label class="form-check-label" for="indian">Indian</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="paleo" name="MealServices" value="Paleo">
+                    <label class="form-check-label" for="paleo">Paleo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="glutenFree" name="MealServices" value="Gluten-free">
+                    <label class="form-check-label" for="glutenFree">Gluten-free</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary">Find</button>
+                <button type="button" class="btn btn-secondary">Edit</button>
+                <button type="button" class="btn btn-secondary">Update</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name + Surname</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Meal Services</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically generated -->
+                @foreach (var agent in Model)
+                {
+                    <tr>
+                        <td>@agent.Id</td>
+                        <td>@agent.FirstName @agent.Surname</td>
+                        <td>@agent.Email</td>
+                        <td>@agent.Telephone</td>
+                        <td>@Html.Raw(Json.Serialize(agent.MealServices))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

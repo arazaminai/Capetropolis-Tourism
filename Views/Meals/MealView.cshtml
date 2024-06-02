@@ -1,0 +1,65 @@
+@model CapetropolisTourism.Models.MealModel
+@{
+    ViewBag.Title = "View meal";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Order</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Order Details</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Order ID</th>
+                <td>@Model.OrderId</td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td>@Model.FirstName</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>@Model.Surname</td>
+            </tr>
+            <tr>
+                <th>Meal Type</th>
+                <td>@Model.MealType</td>
+            </tr>
+            <tr>
+                <th>Meal Agent</th>
+                <td>@Model.MealAgent</td>
+            </tr>
+            <tr>
+                <th>Meal Details</th>
+                <td>@Model.MealDetails</td>
+            </tr>
+            <tr>
+                <th>Hotel Residence</th>
+                <td>@Model.HotelName</td>
+            </tr>
+            <tr>
+                <th>Order Date</th>
+                <td>@Model.OrderDate</td>
+            </tr>
+        </table>
+    </div>
+    <!-- make the table submitable -->
+    <form asp-controller="Meals" asp-action="MealSubmission">
+        <input type="hidden" name="OrderId" value="@Model.OrderId" />
+        <input type="hidden" name="FirstName" value="@Model.FirstName" />
+        <input type="hidden" name="Surname" value="@Model.Surname" />
+        <input type="hidden" name="MealType" value="@Model.MealType" />
+        <input type="hidden" name="MealAgent" value="@Model.MealAgent" />
+        <input type="hidden" name="MealDetails" value="@Model.MealDetails" />
+        <input type="hidden" name="HotelName" value="@Model.HotelName" />
+        <input type="hidden" name="OrderDate" value="@Model.OrderDate" />
+        <button type="submit" class="btn btn-primary">Submit Order</button>
+    </form>
+</body>
+</html>
