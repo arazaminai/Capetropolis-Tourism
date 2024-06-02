@@ -49,6 +49,13 @@ public class MealsController : Controller
         return RedirectToAction("Agents");
     }
 
+    public IActionResult AgentDelete(int id)
+    {
+        AgentModel agent = this.agents.GetById(id);
+        this.agents.DeleteData(agent);
+        return RedirectToAction("Agents");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

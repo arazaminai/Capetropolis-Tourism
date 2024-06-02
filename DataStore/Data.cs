@@ -25,6 +25,12 @@ public class Data<T> where T : BaseModel
         }
     }
 
+    public T GetById(int id)
+    {
+        List<T> data = GetData();
+        return data.FirstOrDefault(d => d.Id == id);
+    }
+
     public T AddData(T data)
     {
         List<T> previousData = GetData();
@@ -47,7 +53,7 @@ public class Data<T> where T : BaseModel
     public void DeleteData(T data)
     {
         List<T> previousData = GetData();
-        previousData.Remove(data);
+        previousData.RemoveAll(d => d.Id == data.Id);
         string dataJson = JsonConvert.SerializeObject(previousData);
         File.WriteAllText(this.table, dataJson);
     }
