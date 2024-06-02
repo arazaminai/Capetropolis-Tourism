@@ -3,29 +3,35 @@
     ViewData["Title"] = "Hotels";
 }
 
-<div class="text-center">
-    <!-- display name value from controller -->
-    <h1 class="display-4">Welcome</h1>
-    <!-- foreach loop to display all hotels -->
-    @foreach (var hotel in Model)
-    {
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Hotels</h1>
+    </div>
+
+    <div class="row">
+        @foreach (var hotel in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">@hotel.name</h5>
                         @foreach (var room in hotel.rooms)
                         {
-                            <p class="card-text">@room.roomType</p>
-                            <p class="card-text">@room.price</p>
-                            @foreach (var feature in room.features)
-                            {
-                                <p class="card-text">@feature</p>
-                            }
-                        } 
+                            <div class="mb-3">
+                                <h6 class="card-subtitle mb-2 text-muted">@room.roomType</h6>
+                                <p class="card-text">Price: @room.price</p>
+                                <ul class="list-unstyled">
+                                    @foreach (var feature in room.features)
+                                    {
+                                        <li>@feature</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
                         <a asp-controller="Hotels" asp-action="Booking" asp-route-name="@hotel.name" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+</div>
